@@ -44,6 +44,9 @@
 		}
 	},
 	"environment": {
+		"niconico": {
+			"supportedModes": ["single", "ranking"]
+		},
 		"sandbox-runtime": "2"
 	}
 }
