@@ -19,10 +19,10 @@ export class LoadingScene extends g.LoadingScene {
         this.loaded.addOnce(() => {
             this.initialize();
         });
-        this.targetReset.addOnce(() => {
+        this.targetReset.add(() => {
             this.initialize();
         });
-        this.targetReady.addOnce(() => {
+        this.targetReady.add(() => {
             this.finalize();
         });
     }

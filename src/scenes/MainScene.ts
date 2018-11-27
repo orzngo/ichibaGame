@@ -8,7 +8,7 @@ export class MainScene extends g.Scene {
     constructor(public lengthSeconds: number) {
         super({game: g.game, assetIds: ["title"]});
 
-        this.loaded.add(() => {
+        this.loaded.addOnce(() => {
             this.initialize();
         });
     }
