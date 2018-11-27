@@ -1,3 +1,7 @@
+/**
+ * Loading中に出るシーン
+ * 一番最初の読み込み以外ではこいつがでる
+ */
 export class LoadingScene extends g.LoadingScene {
 
     font: g.DynamicFont;

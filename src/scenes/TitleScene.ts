@@ -1,5 +1,8 @@
 import {MainScene} from "./MainScene";
 
+/**
+ * 最初に出すシーン
+ */
 export class TitleScene extends g.Scene {
     static LENGTH_SECONDS: number = 5;
 

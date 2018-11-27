@@ -1,7 +1,7 @@
 {
 	"width": 640,
 	"height": 360,
-	"fps": 50,
+	"fps": 30,
 	"main": "./script/main.js",
 	"assets": {
 		"loading": {
