@@ -1,9 +1,13 @@
+declare var window: any;
+
 export class MainScene extends g.Scene {
 
     titleImage: g.Sprite;
     scoreLabel: g.Label;
     timerLabel: g.Label;
     frameCount: number = 0;
+
+    isRunning: boolean;
 
     constructor(public lengthSeconds: number) {
         super({game: g.game, assetIds: ["title"]});
@@ -36,6 +40,7 @@ export class MainScene extends g.Scene {
         this.update.add(() => {
             this.mainLoop();
         });
+        this.isRunning = true;
     }
 
     mainLoop(): void {
@@ -43,7 +48,7 @@ export class MainScene extends g.Scene {
         this.titleImage.angle = 360 - this.frameCount % 360;
         this.titleImage.modified();
 
-        this.timerLabel.text = `TIME: ${this.lengthSeconds - Math.floor(this.frameCount / this.game.fps)}`;
+        this.timerLabel.text = `TIME: ${this.getRemainingTime()}`;
         this.timerLabel.invalidate();
 
         if (this.frameCount % 10 === 0) {
@@ -52,5 +57,19 @@ export class MainScene extends g.Scene {
             this.scoreLabel.invalidate();
         }
 
+
+        if (this.game.vars.isAtsumaru && this.getRemainingTime() === 0 && this.isRunning) {
+            this.isRunning = false;
+            window.RPGAtsumaru.experimental.scoreboards.setRecord(1, this.game.vars.gameState.score);
+            this.setTimeout(() => {
+                window.RPGAtsumaru.experimental.scoreboards.display(1);
+            }, 3000);
+        }
+
+    }
+
+
+    getRemainingTime(): number {
+        return this.lengthSeconds - Math.floor(this.frameCount / this.game.fps);
     }
 }
