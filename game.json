@@ -1,0 +1,49 @@
+{
+	"width": 640,
+	"height": 360,
+	"fps": 50,
+	"main": "./script/main.js",
+	"assets": {
+		"loading": {
+			"type": "image",
+			"width": 384,
+			"height": 128,
+			"path": "image/loading.png",
+			"global": true
+		},
+		"title": {
+			"type": "image",
+			"width": 256,
+			"height": 256,
+			"path": "image/title.png"
+		},
+		"main": {
+			"type": "script",
+			"path": "script/main.js",
+			"global": true
+		},
+		"LoadingScene": {
+			"type": "script",
+			"path": "script/scenes/LoadingScene.js",
+			"global": true
+		},
+		"MainScene": {
+			"type": "script",
+			"path": "script/scenes/MainScene.js",
+			"global": true
+		},
+		"MyInitialScene": {
+			"type": "script",
+			"path": "script/scenes/MyInitialScene.js",
+			"global": true
+		},
+		"TitleScene": {
+			"type": "script",
+			"path": "script/scenes/TitleScene.js",
+			"global": true
+		}
+	},
+	"environment": {
+		"sandbox-runtime": "2"
+	}
+}
