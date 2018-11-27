@@ -18,6 +18,8 @@ export class TitleScene extends g.Scene {
     }
 
     initialize(): void {
+        this.append(new g.FilledRect({scene: this, width: g.game.width, height: g.game.height, cssColor: "white"}));
+
         const font = new g.DynamicFont({game: g.game, fontFamily: g.FontFamily.Serif, size: 40});
         const label = new g.Label({scene: this, font: font, text: "TITLE GAMEN", fontSize: 64});
         label.x = (g.game.width / 2) - label.width / 2;

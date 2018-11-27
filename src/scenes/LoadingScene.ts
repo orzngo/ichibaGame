@@ -28,6 +28,8 @@ export class LoadingScene extends g.LoadingScene {
     }
 
     initialize(): void {
+        this.append(new g.FilledRect({scene: this, width: g.game.width, height: g.game.height, cssColor: "white"}));
+
         const icon = new g.FrameSprite({
             src: (<g.ImageAsset>g.game.assets["loading"]),
             width: 256,
