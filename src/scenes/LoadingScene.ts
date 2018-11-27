@@ -16,13 +16,13 @@ export class LoadingScene extends g.LoadingScene {
             explicitEnd: true
         });
         this.font = new g.DynamicFont({game: g.game, fontFamily: g.FontFamily.Serif, size: 40});
-        this.loaded.add(() => {
+        this.loaded.addOnce(() => {
             this.initialize();
         });
-        this.targetReset.add(() => {
+        this.targetReset.addOnce(() => {
             this.initialize();
         });
-        this.targetReady.add(() => {
+        this.targetReady.addOnce(() => {
             this.finalize();
         });
     }
@@ -67,12 +67,16 @@ export class LoadingScene extends g.LoadingScene {
             this.updateLabel();
             return;
         }
+
+        // FIXME: 終了演出を挟もうとするとエラー出る
+        /*
         this.frameCount++;
         this.fadeOutRect.cssColor = `rgba(0,0,0,${this.frameCount / 100})`;
 
         if (this.frameCount > 3 * g.game.fps) {
             this.end();
         }
+        */
 
     }
 
@@ -84,7 +88,7 @@ export class LoadingScene extends g.LoadingScene {
     finalize(): void {
         this.end();
 
-        // なんか終了演出を挟むと次のsceneがno sceneとかいわれる
+        // FIXME: なんか終了演出を挟むと次のsceneがno sceneとかいわれる
         //this.isTargetReady = true;
     }
 }
