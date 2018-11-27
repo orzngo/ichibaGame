@@ -44,6 +44,11 @@ export class MainScene extends g.Scene {
     }
 
     mainLoop(): void {
+
+        if (!this.isRunning) {
+            return;
+        }
+
         this.frameCount++;
         this.titleImage.angle = 360 - this.frameCount % 360;
         this.titleImage.modified();
