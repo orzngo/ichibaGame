@@ -41,6 +41,6 @@ export class MyInitialScene extends g.Scene {
             score: 0
         };
 
-        g.game.replaceScene(new TitleScene());
+        g.game.replaceScene(new TitleScene(g.game.vars.totalTimeLimit));
     }
 }

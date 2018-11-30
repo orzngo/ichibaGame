@@ -41,11 +41,24 @@
 			"type": "script",
 			"path": "script/scenes/TitleScene.js",
 			"global": true
+		},
+		"DescriptionScene": {
+			"type": "script",
+			"path": "script/scenes/DescriptionScene.js",
+			"global": true
+		},
+		"ResultScene": {
+			"type": "script",
+			"path": "script/scenes/ResultScene.js",
+			"global": true
 		}
 	},
 	"environment": {
 		"niconico": {
-			"supportedModes": ["single", "ranking"]
+			"supportedModes": [
+				"single",
+				"ranking"
+			]
 		},
 		"sandbox-runtime": "2"
 	}

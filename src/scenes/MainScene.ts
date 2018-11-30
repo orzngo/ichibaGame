@@ -1,3 +1,5 @@
+import {ResultScene} from "./ResultScene";
+
 declare var window: any;
 
 export class MainScene extends g.Scene {
@@ -9,7 +11,7 @@ export class MainScene extends g.Scene {
 
     isRunning: boolean;
 
-    constructor(public lengthSeconds: number) {
+    constructor(public remainingTime: number) {
         super({game: g.game, assetIds: ["title"]});
 
         this.loaded.addOnce(() => {
@@ -45,21 +47,30 @@ export class MainScene extends g.Scene {
 
     mainLoop(): void {
 
-        if (!this.isRunning) {
-            return;
-        }
-
         this.frameCount++;
-        this.titleImage.angle = 360 - this.frameCount % 360;
-        this.titleImage.modified();
 
         this.timerLabel.text = `TIME: ${this.getRemainingTime()}`;
         this.timerLabel.invalidate();
 
-        if (this.frameCount % 10 === 0) {
+        if (this.frameCount % 10 === 0 && this.isRunning) {
             this.game.vars.gameState.score = this.game.random.get(0, 100000);
             this.scoreLabel.text = `RANDOM SCORE: ${this.game.vars.gameState.score}`;
             this.scoreLabel.invalidate();
+        }
+
+        if (this.isRunning) {
+            this.titleImage.angle = 360 - this.frameCount % 360;
+            this.titleImage.modified();
+        }
+
+
+        // 終了演出のため、残り時間より少し早めにゲームを止める
+        if (this.getRemainingTime() === 5 && this.isRunning) {
+            this.isRunning = false;
+        }
+
+        if (this.getRemainingTime() === 0) {
+            this.finalize();
         }
 
 
@@ -73,8 +84,11 @@ export class MainScene extends g.Scene {
 
     }
 
+    finalize(): void {
+        g.game.replaceScene(new ResultScene());
+    }
 
     getRemainingTime(): number {
-        return this.lengthSeconds - Math.floor(this.frameCount / this.game.fps);
+        return this.remainingTime - Math.floor(this.frameCount / this.game.fps);
     }
 }

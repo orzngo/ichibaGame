@@ -1,4 +1,4 @@
-import {MainScene} from "./MainScene";
+import {DescriptionScene} from "./DescriptionScene";
 
 /**
  * 最初に出すシーン
@@ -9,7 +9,7 @@ export class TitleScene extends g.Scene {
     titleImage: g.Sprite;
     frameCount: number = 0;
 
-    constructor() {
+    constructor(public remainingTime: number = TitleScene.LENGTH_SECONDS) {
         super({game: g.game, assetIds: ["title"]});
 
         this.loaded.add(() => {
@@ -40,7 +40,7 @@ export class TitleScene extends g.Scene {
         this.titleImage.angle = this.frameCount % 360;
         this.titleImage.modified();
         if (this.frameCount > TitleScene.LENGTH_SECONDS * g.game.fps) {
-            g.game.replaceScene(new MainScene(g.game.vars.totalTimeLimit - TitleScene.LENGTH_SECONDS));
+            g.game.replaceScene(new DescriptionScene(this.remainingTime - TitleScene.LENGTH_SECONDS));
         }
     }
 }
