@@ -53,7 +53,7 @@ export class MyInitialScene extends g.Scene {
     // アツマールでもなく、実験放送でもない時、ちょっと待ってから自動で初期化開始するためのループ
     mainLoop(): void {
         this.frameCount++;
-        if (this.frameCount > 2 * g.game.fps) {
+        if (this.frameCount > 0.5 * g.game.fps) {
             this.initialize();
         }
     }
