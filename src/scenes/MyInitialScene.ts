@@ -40,7 +40,7 @@ export class MyInitialScene extends g.Scene {
 
         g.game.vars.totalTimeLimit = 60;
         if (g.game.vars.parameters && g.game.vars.parameters.totalTimeLimit && g.game.vars.parameters.totalTimeLimit > 0) {
-            g.game.vars.totalTimeLimit = g.game.vars.parameters.TotalTimeLimit;
+            g.game.vars.totalTimeLimit = g.game.vars.parameters.totalTimeLimit;
         }
 
         g.game.vars.gameState = {
