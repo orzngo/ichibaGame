@@ -6,6 +6,17 @@ cas.nicovideo.jpへ投稿可能なコンテンツを作成する際のテンプ�
 - package.jsonのname
 - game.jsonのサポートタイプ
 
+# 説明など
+## シーン遷移
+- MyInitialScene
+- TitleScene
+- DescriptionScene
+- MainScene
+- ResultScene
+
+
+の順に遷移。MyInitialSceneに具体的な表示内容はなく、初期化完了後直ちにTitleSceenへ遷移する。
+
 
 # メモ書き
 ゲーム開始時のInitialSceneはカスタマイズできないため、グローバルアセットを読み込む際のプログレスバーは弄れない。  
