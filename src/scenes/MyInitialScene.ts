@@ -6,7 +6,9 @@
 import {TitleScene} from "./TitleScene";
 
 export class MyInitialScene extends g.Scene {
+    frameCount: number = 0;
     timerId: g.TimerIdentifier;
+    isInitializeStarted: boolean = false;
 
     constructor() {
         super({game: g.game});
@@ -24,14 +26,18 @@ export class MyInitialScene extends g.Scene {
                 }
             });
         }
-        // 実験放送でもアツマールでもない時はstartがこないので勝手にやる
-        // FIXME: こいつをdestroyしようとするとエラー出る
-        this.timerId = this.setTimeout(() => {
-            this.initialize();
-        }, 1000);
+        // 実験放送でもアツマールでもない時はstartがこないため、ループでちょっと待って開始する
+        this.update.add(() => {
+            this.mainLoop();
+        });
     }
 
     initialize(): void {
+        if (this.isInitializeStarted) {
+            return;
+        }
+        this.isInitializeStarted = true;
+
         g.game.vars.totalTimeLimit = 60;
         if (g.game.vars.parameters && g.game.vars.parameters.totalTimeLimit && g.game.vars.parameters.totalTimeLimit > 0) {
             g.game.vars.totalTimeLimit = g.game.vars.parameters.TotalTimeLimit;
@@ -43,4 +49,13 @@ export class MyInitialScene extends g.Scene {
 
         g.game.replaceScene(new TitleScene(g.game.vars.totalTimeLimit));
     }
+
+    // アツマールでもなく、実験放送でもない時、ちょっと待ってから自動で初期化開始するためのループ
+    mainLoop(): void {
+        this.frameCount++;
+        if (this.frameCount > 2 * g.game.fps) {
+            this.initialize();
+        }
+    }
+
 }

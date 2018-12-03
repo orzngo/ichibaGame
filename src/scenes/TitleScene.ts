@@ -9,7 +9,7 @@ export class TitleScene extends g.Scene {
     titleImage: g.Sprite;
     frameCount: number = 0;
 
-    constructor(public remainingTime: number = TitleScene.LENGTH_SECONDS) {
+    constructor(public remainingTime: number) {
         super({game: g.game, assetIds: ["title"]});
 
         this.loaded.add(() => {
@@ -24,6 +24,16 @@ export class TitleScene extends g.Scene {
         const label = new g.Label({scene: this, font: font, text: "TITLE GAMEN", fontSize: 64});
         label.x = (g.game.width / 2) - label.width / 2;
         this.append(label);
+
+        const timeLabel = new g.Label({
+            scene: this,
+            font: font,
+            text: `totalTimeLimit: ${this.remainingTime}`,
+            fontSize: 64
+        });
+        timeLabel.x = (g.game.width / 2) - (timeLabel.width / 2);
+        timeLabel.y = g.game.height - timeLabel.height;
+        this.append(timeLabel);
 
         this.titleImage = new g.Sprite({scene: this, src: (<g.ImageAsset>this.assets["title"])});
         this.titleImage.x = (g.game.width / 2) - this.titleImage.width / 2;
