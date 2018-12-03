@@ -4,6 +4,7 @@ cas.nicovideo.jpへ投稿可能なコンテンツを作成する際のテンプ�
 
 # 最低限書き換える部分
 - package.jsonのname
+- game.jsonのサポートタイプ
 
 
 # メモ書き
