@@ -7,11 +7,12 @@ import {TitleScene} from "./TitleScene";
 
 export class MyInitialScene extends g.Scene {
     frameCount: number = 0;
-    timerId: g.TimerIdentifier;
     isInitializeStarted: boolean = false;
 
     constructor() {
         super({game: g.game});
+
+        // アツマールの時はstartイベントがこないことがわかっているため、直ちに初期化を開始する
         if (g.game.vars.isAtsumaru) {
             this.loaded.add(() => {
                 this.initialize();
@@ -26,7 +27,8 @@ export class MyInitialScene extends g.Scene {
                 }
             });
         }
-        // 実験放送でもアツマールでもない時はstartがこないため、ループでちょっと待って開始する
+
+        // 実験放送でない時はstartがこないため、ループでちょっと待って開始する
         this.update.add(() => {
             this.mainLoop();
         });
