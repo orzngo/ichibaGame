@@ -28,7 +28,7 @@ npm start
 - ResultScene
 
 
-の順に遷移。MyInitialSceneに具体的な表示内容はなく、初期化完了後直ちにTitleSceenへ遷移する。
+の順に遷移。MyInitialSceneに具体的な表示内容はなく、初期化完了後直ちにTitleSceneへ遷移する。
 
 
 # メモ書き
