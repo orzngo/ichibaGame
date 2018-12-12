@@ -3,13 +3,13 @@ export interface RPGAtsumaruApi {
         scoreboards: {
             setRecord(board_id: number, score: number): Promise<void>;
             display(board_id: number): Promise<void>;
-            getRecords(board_id: number): Promise<Scoreborads.ScoreboardData>;
+            getRecords(board_id: number): Promise<Scoreboards.ScoreboardData>;
         }
     }
 }
 
 
-namespace Scoreborads {
+export namespace Scoreboards {
     export interface ScoreboardData {
         boardId: number;
         boardName: string;
