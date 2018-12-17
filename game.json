@@ -51,6 +51,16 @@
 			"type": "script",
 			"path": "script/scenes/ResultScene.js",
 			"global": true
+		},
+		"RPGAtsumaru": {
+			"type": "script",
+			"path": "script/services/game.nicovideo.jp/RPGAtsumaru.js",
+			"global": true
+		},
+		"RPGAtsumaruApi": {
+			"type": "script",
+			"path": "script/services/game.nicovideo.jp/RPGAtsumaruApi.js",
+			"global": true
 		}
 	},
 	"environment": {

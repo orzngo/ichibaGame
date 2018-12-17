@@ -1,3 +1,5 @@
+import {RPGAtsumaru} from "../services/game.nicovideo.jp/RPGAtsumaru";
+
 declare var window: any;
 
 export class ResultScene extends g.Scene {
@@ -5,9 +7,11 @@ export class ResultScene extends g.Scene {
 
     frameCount: number = 0;
     isRunning: boolean = false;
+    atsumaruApi: RPGAtsumaru;
 
     constructor(public remainingTime: number = ResultScene.LENGTH_SECONDS) {
         super({game: g.game, assetIds: ["title"]});
+        this.atsumaruApi = new RPGAtsumaru();
 
         this.loaded.addOnce(() => {
             this.initialize();
@@ -32,7 +36,7 @@ export class ResultScene extends g.Scene {
     mainLoop(): void {
         this.frameCount++;
 
-        if (this.game.vars.isAtsumaru && this.getRemainingTime() === 0 && this.isRunning) {
+        if (this.atsumaruApi.isAtsumaru && this.getRemainingTime() === 0 && this.isRunning) {
             this.isRunning = false;
             window.RPGAtsumaru.experimental.scoreboards.setRecord(1, this.game.vars.gameState.score);
             this.setTimeout(() => {

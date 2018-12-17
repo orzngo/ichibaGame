@@ -4,16 +4,19 @@
  * 実験放送でもアツマールでもない環境（ローカルなど）ではちょっと待ってから勝手にシーン遷移する
  */
 import {TitleScene} from "./TitleScene";
+import {RPGAtsumaru} from "../services/game.nicovideo.jp/RPGAtsumaru";
 
 export class MyInitialScene extends g.Scene {
     frameCount: number = 0;
     isInitializeStarted: boolean = false;
+    atsumaruApi: RPGAtsumaru;
 
     constructor() {
         super({game: g.game});
+        this.atsumaruApi = new RPGAtsumaru();
 
         // アツマールの時はstartイベントがこないことがわかっているため、直ちに初期化を開始する
-        if (g.game.vars.isAtsumaru) {
+        if (this.atsumaruApi.isAtsumaru) {
             this.loaded.add(() => {
                 this.initialize();
             });
