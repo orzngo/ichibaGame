@@ -5,7 +5,6 @@ import ScoreboardData = Scoreboards.ScoreboardData;
 declare var window: any;
 
 export class RPGAtsumaru {
-    atsumaruApi: RPGAtsumaruApi | undefined;
     isAtsumaru: boolean;
 
     static getAtsumaruApiObject(): RPGAtsumaruApi | undefined {
@@ -15,7 +14,7 @@ export class RPGAtsumaru {
         return undefined;
     }
 
-    constructor(atsumaruApi: RPGAtsumaruApi | undefined = RPGAtsumaru.getAtsumaruApiObject()) {
+    constructor(private atsumaruApi: RPGAtsumaruApi | undefined = RPGAtsumaru.getAtsumaruApiObject()) {
         this.isAtsumaru = typeof this.atsumaruApi !== 'undefined';
     }
 
