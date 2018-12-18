@@ -72,16 +72,6 @@ export class MainScene extends g.Scene {
         if (this.getRemainingTime() === 0) {
             this.finalize();
         }
-
-
-        if (this.game.vars.isAtsumaru && this.getRemainingTime() === 0 && this.isRunning) {
-            this.isRunning = false;
-            window.RPGAtsumaru.experimental.scoreboards.setRecord(1, this.game.vars.gameState.score);
-            this.setTimeout(() => {
-                window.RPGAtsumaru.experimental.scoreboards.display(1);
-            }, 3000);
-        }
-
     }
 
     finalize(): void {
